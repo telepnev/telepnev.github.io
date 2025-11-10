@@ -258,7 +258,7 @@ body.dark-theme{
   row-gap: 0;
 }
 .home__name,
-.home_profession{
+.home__profession{
   font-size: var(--biggest-font-size);
   font-weight: var(--font-semi-bold);
   letter-spacing: 2px;
@@ -300,21 +300,70 @@ body.dark-theme{
   width: 40px;
   fill: var(--title-color);
   transition: fill .4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 .home__star-1{
   top: 2.5rem;
   left: -3rem;
   rotate: 17deg;
+  /* Анимация: вращение и плавное движение */
+  animation: float-rotate-1 6s ease-in-out infinite;
 }
 
 .home__star-2{
   right: -3.5rem;
   bottom: .75rem;
+  /* Анимация: вращение в обратную сторону и движение */
+  animation: float-rotate-2 7s ease-in-out infinite;
 }
 
-.home_profession{
-  transform: translateY(-1.2rem);
+/* Анимация для первой иконки */
+@keyframes float-rotate-1 {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-15px) rotate(-5deg);
+  }
+}
+
+/* Анимация для второй иконки */
+@keyframes float-rotate-2 {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  30% {
+    transform: translateY(-12px) rotate(-8deg);
+  }
+  60% {
+    transform: translateY(-8px) rotate(0deg);
+  }
+  80% {
+    transform: translateY(-18px) rotate(8deg);
+  }
+}
+
+/* Эффекты при наведении курсора на иконки */
+.home__star-1:hover,
+.home__star-2:hover {
+  fill: hsl(42, 70%, 50%);
+  filter: drop-shadow(0 0 10px hsla(42, 70%, 50%, 0.7));
+  animation-play-state: paused;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.home__profession{
+  transform: translateY(1rem);
+  margin-top: 1rem;
 }
 
 /*=============== ABOUT ===============*/
@@ -368,6 +417,20 @@ display: grid;
 
 .skills__list li{
   margin: 0;
+  font-size: 0.85rem;
+}
+
+.skills__list .resume__title{
+  font-size: 0.85rem;
+}
+
+.skills__list i{
+  font-size: 1rem;
+}
+
+/* Отступ снизу, чтобы не наезжать на certificates */
+.skills.section{
+  margin-bottom: 2rem;
 }
 
 /*=============== EDUCATION ===============*/ 
@@ -599,7 +662,8 @@ display: grid;
   }
 
   .home__profession{
-    transform: translateY(-.2rem);
+    transform: translateY(1.5rem);
+    margin-top: 1rem;
   }
 
   .certificates__container,
